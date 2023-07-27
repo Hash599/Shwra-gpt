@@ -15,7 +15,7 @@ export default async function handler(
   console.log('temp',temperature)
   console.log('model',selectedModel)
   console.log('qaPr',qaPrompt)
-  console.log('cPr',condensePrompt)
+  
 console.log(topP)
 console.log(maxLength)
 console.log(frequencyPenalty)

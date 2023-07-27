@@ -20,9 +20,12 @@ Helpful answer in markdown:`;
 
 export const makeChain = (vectorstore: PineconeStore, temperature: number, modelname: any, qaPrompt: string, condensePrompt: string,Topp:any,MaxLength:any,presenceP:any,frequencyP:any) => {
   const model = new OpenAI({
-    temperature: temperature, // increase temepreature to get more creative answers
+    temperature:temperature, // increase temepreature to get more creative answers
     modelName: modelname, //change this to gpt-4 if you have access
-
+   topP:Topp,
+   frequencyPenalty:frequencyP,
+   presencePenalty:presenceP,
+ 
   });
 
   const chain = ConversationalRetrievalQAChain.fromLLM(
@@ -34,11 +37,7 @@ export const makeChain = (vectorstore: PineconeStore, temperature: number, model
 
       Question: {question}
       Helpful answer in markdown:`,
-      questionGeneratorTemplate: `${condensePrompt}
-      Chat History:
-{chat_history}
-Follow Up Input: {question}
-Standalone question:`,
+      questionGeneratorTemplate: CONDENSE_PROMPT,
       returnSourceDocuments: true, //The number of source documents returned is 4 by default
     },
   );

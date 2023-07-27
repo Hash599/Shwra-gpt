@@ -534,7 +534,7 @@
 <div style={{ flex: 1 }}>
 
         <label htmlFor="temperature" style={styless.label}>
-          درجة الحرارة 
+         {/**  درجة الحرارة*/} Temperature
         </label>
         <input
           type="range"
@@ -548,10 +548,11 @@
           style={styless.input}
         />
         <p style={styless.currentTemperature}>
-          درجة الحرارة الحالية: {temperature}
+          Temperature: {temperature}
         </p>
+      
         <div style={{margin:"15px"}}>
-    <label htmlFor="model">اختر النموذج:</label>
+    <label htmlFor="model">{/*اختر النموذج:*/} MODEL</label>
     <select
       id="model"
       name="model"
@@ -564,22 +565,24 @@
       <option value="text-davinci-003" style={{textAlign:'center'}}>text-davinci-003</option>
     </select>
     </div>
+        {/**
         <div style={{margin:"15px"}}>
-    <label htmlFor="model">أسلوب:</label>
-    <select
-      id="mode"
-      name="mode"
-      value={selectedMode}
-      onChange={handleModeSelect}
-      style={{margin:'12px',border:"2px solid black"}}
-      >
-      <option value="Chat" style={{textAlign:'center'}}>  Chat</option>
-      <option value="Complete" style={{textAlign:'center'}}>Complete</option>
-      <option value="Edit" style={{textAlign:'center'}}>Edit</option>
-    </select>
-    </div>
+        <label htmlFor="model">أسلوب:</label>
+        <select
+        id="mode"
+        name="mode"
+        value={selectedMode}
+        onChange={handleModeSelect}
+        style={{margin:'12px',border:"2px solid black"}}
+        >
+        <option value="Chat" style={{textAlign:'center'}}>  Chat</option>
+        <option value="Complete" style={{textAlign:'center'}}>Complete</option>
+        <option value="Edit" style={{textAlign:'center'}}>Edit</option>
+        </select>
+        </div>
+        */ }
     <div style={{margin:"15px"}}>
-      <label>أعلى قيمة لـ  التحديد:</label>
+      <label>{/*أعلى قيمة لـ  التحديد*/} TOP P</label>
       <input
           type="range"
           id="topP"
@@ -592,23 +595,23 @@
           style={styless.input}
         />
         <p style={styless.currentTemperature}>
-        على قيمة لـ  التحديد: {topP}
+        {topP}
         </p>
 
-      <label>الطول الأقصى:</label>
+      <label>MAX LENGTH{/*الطول الأقصى*/ }</label>
       <input
         type="number"
         id="MaxLength"
         name="maxLength"
-      
+      style={styless.input}
         value={maxLength}
         onChange={handleMaxlengthChange}
       />
         <p style={styless.currentTemperature}>
-        الطول الأقصى {maxLength}
+          {maxLength}
         </p>
 
-      <label>عقوبة التكرار:</label>
+      <label>Frequency Penalty:{/*عقوبة التكرار*/ }</label>
       <input
         type="range"
         step="0.1"
@@ -620,10 +623,10 @@
         onChange={handleFrequencyPChange}
               />
                <p style={styless.currentTemperature}>
-               عقوبة التكرار: {frequencyPenalty}
+               {frequencyPenalty}
         </p>
 
-      <label>عقوبة الحضور:</label>
+      <label>{/*عقوبة الحضور*/ }Presence Penalty:</label>
       <input
          type="range"
          step="0.1"
@@ -635,14 +638,14 @@
         onChange={handlePresencePlenty}
       />
    <p style={styless.currentTemperature}>
-               عقوبة الحضور: {presencePenalty}
+                {presencePenalty}
         </p>
 
       
     </div>
         </div>
     <div style={{ flex: 1 }}>
-    <label htmlFor="qaPrompt">مستخدم</label>
+    <label htmlFor="qaPrompt">QA PROMPT</label>
       <textarea
         id="qaPrompt"
         value={qaPrompt}
@@ -650,8 +653,8 @@
         style={{ width: "100%", height: "200px" }}
         />
 </div>
+      {/* Input for Condense prompt 
 <div style={{ flex: 1 }}>
-      {/* Input for Condense prompt */}
       <label htmlFor="condensePrompt">نظام</label>
       <textarea
         id="condensePrompt"
@@ -661,6 +664,7 @@
         />
         </div>
 
+      */}
     </div>
     <button onClick={handleButtonClick} style={styless.button}>
           Apply Changes
