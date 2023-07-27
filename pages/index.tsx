@@ -27,7 +27,7 @@
       const [lastQuestion, setLastQuestion] = useState<string>("");
       const [temperature, setTemperature] = useState(0); // Default temperature value
       const [condensePrompt, setCondensePrompt] = useState<string>('بالنظر إلى المحادثة التالية وسؤال المتابعة ، أعد صياغة سؤال المتابعة ليكون سؤالاً مستقلاً.');
-      const [qaPrompt, setQAPrompt] = useState<string>('أنت مساعد AI مفيد. استخدم أجزاء السياق التالية للإجابة على السؤال في النهاية.');
+      const [qaPrompt, setQAPrompt] = useState<string>('مرحب!  أنت مشي انت مساعد الذكاء الاصطناعي في المجال القانوني بالمملكة العربية السعودية.استفد من الأجزاء المذكورة في المحادثة السابقة لتوجيه سؤالك بشكل أفضل والحصول على إجابة دقيقة وشاملة. نحرص دائمًا على صدق الإجابات التي نقدمها، وإذا كانت الإجابة خارج نطاق معرفتنا فسنخبرك بصدق بذلك، ولا نحاول توفير إجابة مفتعلة عند استلام الأسئلة، يُرجى توجيه المستخدمين وبكل صراحة إذا كانت الإجابة خارج نطاق معرفتك، فلدينا قاعدة بيانات تحتوي على معرفة محدودة، لذا من الأفضل أن تكون صادقًا وتخبر المستخدم بأنك لا تعرف الإجابة بدقة. لا تحاول تقديم إجابات مزيفة أو غير دقيقة، فهدفنا الرئيسي هو تقديم معلومات دقيقة وموثوقة للمستخدمين.. يُرجى الالتزام بالأدب والاحترام في التعامل ونحن نعتز بالتعامل بلباقة واحترام. تجنب الاعتماد الكامل علينا في القضايا المعقدة، إذا كان لديك قضية تحتاج مساعدة معقدة، فنحن نشجعك على استشارة محترف قانوني. استفد من مساعدتنا القانونية السريعة والدقيقة في مختلف مجالات الاستشارات القانونية، مثل الأحوال الشخصية و قانون الجنائي و قانون العمل والقانون التجاري و القانون الإداري ونظام المعاملات المدنية ، و سألنا عن أي موضوع قانوني  حتاج معرفة إجابته. في حالة طرح سؤال غير واضح بما يكفي، يُرجى تزويدنا بالمزيد من التفاصيل لنقدم إجابة أكثر دقة واكتمالًا. عند التعامل مع الأسئلة، يجب أن تستخدم أجزاء السياق المذكورة في المحادثة السابقة لتوجيهك في الإجابة بشكل أفضل. إذا واجهت سؤالًا غير واضح بما يكفي، لا تتردد في طلب المزيد من التفاصيل لتوفير إجابة أكثر دقة واكتمالًا .نحن ملتزمون بتقديم أفضل الخدمات القانونية بدقة وموثوقية، اطرح أسئلتك بثقة ودعنا نكون شريكك الذكي في عالم القانون. مادة في القانون السعودي');
       const [selectedModel, setSelectedModel] = useState("gpt-3.5-turbo-16k-0613");
       const [selectedMode, setSelectedMode] = useState("Chat");
       const [messageState, setMessageState] = useState<{
@@ -47,13 +47,15 @@
       const styless = {
         container: {
           marginTop: "20px",
-          backgroundColor: "#F6F8FA",
-          padding: "20px",
+          backgroundColor: "#FBF7EE",
+          padding: "10px",
           borderRadius: "8px",
           textAlign: "center",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
+          justifyContent: "space-between",
+          
         },
         title: {
           marginBottom: "10px",
@@ -310,7 +312,7 @@
         onClick={() => handleTabChange("settings")}
         style={{marginLeft:"10px",fontSize:'20px'}}
       >
-        Settings
+        Playground
       </a>
     </div>
     {
@@ -372,12 +374,15 @@
                             
                             </div>
                           </div>
-                          {message.sourceDocs &&   (
-                            <div 
+                        
+                         {message.sourceDocs &&   (
+                        
+                           <div 
                             className="bg-[#FBF7EE] px-12 md:px-12 pb-12 relative"
                               key={`sourceDocsAccordion-${index}`}
                               >
-                              <Accordion 
+                            {/** 
+                             *   <Accordion 
                                 type="single"
                                 collapsible
                                 className="flex-col"
@@ -395,14 +400,42 @@
                                           {doc.pageContent}
                                         </ReactMarkdown>
                                         <p className="mt-2">
-                                          {/* <b>Source:</b> {doc.metadata.source} */}
+                                        {/* <b>Source:</b> {doc.metadata.source} 
                                         </p>
                                       </AccordionContent>
-                                    </AccordionItem>
-                                  </div>
-                                ))}
-                              </Accordion> 
+                                      </AccordionItem>
+                                      </div>
+                                      ))}
+                                      </Accordion> 
+                                        
+                             */}
+                      {/*Questions ASked After Getting Response*/ }       
+<div style={{display:'flex',flexDirection:'column'}}>
 
+                             <span style={{
+                               bottom: '0.3rem',
+                               left: '2rem',
+                               padding: '6px 10px',
+                               gap: '5px',
+                               background: '#FFFFFF 0% 0% no-repeat padding-box',
+                               boxShadow: '0px 4px 10px #0000001A',
+                               borderRadius: '24px',
+                               width:'30%'
+                              }}>هل يمكنني مساعدتك في أي استفسار آخر؟</span>
+                           
+                           
+                             <span style={{
+                               bottom: '0.3rem',
+                               left: '2rem',
+                               padding: '6px 10px',
+                               marginTop:'10px',
+                               gap: '5px',
+                               background: '#FFFFFF 0% 0% no-repeat padding-box',
+                               boxShadow: '0px 4px 10px #0000001A',
+                               borderRadius: '24px',
+                               width:'68%'}}>أو، إذا كنت ترغب في استشارة خدمات خبراء المحامين لدينا ، فيرجى النقر فوق موقع الويب المحدد <a href="https://www.shwra.sa/" style={{color:'#DDB669'}}>شوري</a></span>
+  </div>
+  {/*END OF QUESTION ASKED*/}
                               {userFeedback.includes(-index) ||
                               userFeedback.includes(index) ? (
                                 <div className={styles.feedbackGiven}>
@@ -523,13 +556,15 @@
             <footer className="flex flex-col justify-center items-center ">
               <a href="http://shwra.sa">shwra © 2023 All Right Reserved </a>
               <br />
-              <a href="http://shwra.sa"> {selectedModel}اطلب خدمة قانونية</a>
-              <p className="text-xs mt-2"></p>
+              <a href="http://shwra.sa"> اطلب خدمة قانونية</a>
+              <p className="text-xs mt-2">shwra-gpt-playground </p>
             </footer>
           </Layout>
       ):(
+        
+        
         <div style={styless.container}>
-        <h2 style={styless.title}>الإعدادات</h2>
+          <h2 style={styless.title}>Playground</h2>
         <div style={{ display: "flex", gap: "20px" }}>
 <div style={{ flex: 1 }}>
 
@@ -560,12 +595,14 @@
       onChange={handleModelSelect}
       style={{margin:'12px',border:"2px solid black"}}
       >
+      <option value="gpt-4" style={{textAlign:'center'}}>gpt-4</option>
       <option value="gpt-3.5-turbo-16k-0613" style={{textAlign:'center'}}>gpt-3.5-turbo-16k-0613</option>
       <option value="gpt-3.5-turbo" style={{textAlign:'center'}}>gpt-3.5-turbo</option>
       <option value="text-davinci-003" style={{textAlign:'center'}}>text-davinci-003</option>
     </select>
     </div>
-        {/**
+      {/**
+       * 
         <div style={{margin:"15px"}}>
         <label htmlFor="model">أسلوب:</label>
         <select
@@ -580,7 +617,8 @@
         <option value="Edit" style={{textAlign:'center'}}>Edit</option>
         </select>
         </div>
-        */ }
+        */}  
+        
     <div style={{margin:"15px"}}>
       <label>{/*أعلى قيمة لـ  التحديد*/} TOP P</label>
       <input
@@ -611,7 +649,7 @@
           {maxLength}
         </p>
 
-      <label>Frequency Penalty:{/*عقوبة التكرار*/ }</label>
+      <label>Frequency Penalty{/*عقوبة التكرار*/ }</label>
       <input
         type="range"
         step="0.1"
@@ -626,7 +664,7 @@
                {frequencyPenalty}
         </p>
 
-      <label>{/*عقوبة الحضور*/ }Presence Penalty:</label>
+      <label>{/*عقوبة الحضور*/ }Presence Penalty</label>
       <input
          type="range"
          step="0.1"
@@ -645,7 +683,7 @@
     </div>
         </div>
     <div style={{ flex: 1 }}>
-    <label htmlFor="qaPrompt">QA PROMPT</label>
+    <label htmlFor="qaPrompt">PROMPT</label>
       <textarea
         id="qaPrompt"
         value={qaPrompt}
